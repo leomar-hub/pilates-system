@@ -1,0 +1,38 @@
+<h2>Usuários</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>E-mail</th>
+      <th>Senha</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{user.id}}</td>
+      <td>{{user.name}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.password}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Cadastrar novo usuário</h3>
+
+<form #userForm="ngForm" (ngSubmit)="onUserSubmit(userForm)">
+  <div>
+    <label for="name">Nome:</label>
+    <input type="text" id="name" name="name" required [(ngModel)]="newUser.name">
+  </div>
+  <div>
+    <label for="email">E-mail:</label>
+    <input type="email" id="email" name="email" required [(ngModel)]="newUser.email">
+  </div>
+  <div>
+    <label for="password">Senha:</label>
+    <input type="password" id="password" name="password" required [(ngModel)]="newUser.password">
+  </div>
+  <button type="submit">Cadastrar</button>
+</form>

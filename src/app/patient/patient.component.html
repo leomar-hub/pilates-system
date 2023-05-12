@@ -1,0 +1,44 @@
+<h2>Pacientes</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Telefone</th>
+      <th>E-mail</th>
+      <th>Data de Nascimento</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let patient of patients">
+      <td>{{patient.id}}</td>
+      <td>{{patient.name}}</td>
+      <td>{{patient.phone}}</td>
+      <td>{{patient.email}}</td>
+      <td>{{patient.birthdate}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Cadastrar novo paciente</h3>
+
+<form #patientForm="ngForm" (ngSubmit)="onPatientSubmit(patientForm)">
+  <div>
+    <label for="name">Nome:</label>
+    <input type="text" id="name" name="name" required [(ngModel)]="newPatient.name">
+  </div>
+  <div>
+    <label for="phone">Telefone:</label>
+    <input type="tel" id="phone" name="phone" required [(ngModel)]="newPatient.phone">
+  </div>
+  <div>
+    <label for="email">E-mail:</label>
+    <input type="email" id="email" name="email" required [(ngModel)]="newPatient.email">
+  </div>
+  <div>
+    <label for="birthdate">Data de Nascimento:</label>
+    <input type="date" id="birthdate" name="birthdate" required [(ngModel)]="newPatient.birthdate">
+  </div>
+  <button type="submit">Cadastrar</button>
+</form>

@@ -1,0 +1,45 @@
+<h2>Evolução do Paciente</h2>
+
+<div *ngIf="selectedPatient">
+  <h3>{{selectedPatient.name}}</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Peso (kg)</th>
+        <th>Altura (m)</th>
+        <th>IMC</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let record of selectedPatient.evolution">
+        <td>{{record.date}}</td>
+        <td>{{record.weight}}</td>
+        <td>{{record.height}}</td>
+        <td>{{record.bmi.toFixed(2)}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Adicionar novo registro de evolução</h3>
+
+  <form #evolutionForm="ngForm" (ngSubmit)="onEvolutionSubmit(evolutionForm)">
+    <div>
+      <label for="date">Data:</label>
+      <input type="date" id="date" name="date" required [(ngModel)]="newRecord.date">
+    </div>
+    <div>
+      <label for="weight">Peso (kg):</label>
+      <input type="number" id="weight" name="weight" required [(ngModel)]="newRecord.weight" min="0.1" step="0.1">
+    </div>
+    <div>
+      <label for="height">Altura (m):</label>
+      <input type="number" id="height" name="height" required [(ngModel)]="newRecord.height" min="0.1" step="0.01">
+    </div>
+    <button type="submit">Adicionar</button>
+  </form>
+</div>
+
+<div *ngIf="!selectedPatient">
+  <p>Selecione um paciente para ver a evolução.</p>
+</div>

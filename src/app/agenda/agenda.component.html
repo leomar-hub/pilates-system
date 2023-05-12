@@ -1,0 +1,49 @@
+<h2>Agenda</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Hora</th>
+      <th>Paciente</th>
+      <th>Tratamento</th>
+      <th>Observações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let appointment of appointments">
+      <td>{{appointment.date}}</td>
+      <td>{{appointment.time}}</td>
+      <td>{{appointment.patientId}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Agendar novo atendimento</h3>
+
+<form #appointmentForm="ngForm" (ngSubmit)="onAppointmentSubmit(appointmentForm)">
+  <div>
+    <label for="date">Data:</label>
+    <input type="date" id="date" name="date" required [(ngModel)]="newAppointment.date">
+  </div>
+  <div>
+    <label for="time">Hora:</label>
+    <input type="time" id="time" name="time" required [(ngModel)]="newAppointment.time">
+  </div>
+  <div>
+    <label for="patient">Paciente:</label>
+    <select id="patient" name="patient" required [(ngModel)]="newAppointment.patientId">
+      <option value="">Selecione um paciente</option>
+      <option *ngFor="let patient of patients" [ngValue]="patient">{{patient.name}}</option>
+    </select>
+  </div>
+  <div>
+    <label for="treatment">Tratamento:</label>
+    <input type="text" id="treatment" name="treatment" required >
+  </div>
+  <div>
+    <label for="notes">Observações:</label>
+    <textarea id="notes" name="notes" ></textarea>
+  </div>
+  <button type="submit">Agendar</button>
+</form>
